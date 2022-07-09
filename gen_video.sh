@@ -58,7 +58,7 @@ cover_font_color=$(python3 "$script_path/script/get_img_font_color.py" $folder_n
 
 echo "$cur_date/$folder_name 获取封面图片文字颜色: $cover_font_color"
 
-sed -i "" "s/color_position/$cover_font_color/g" $script_path/cover-maker/template/1/conf.ini #替换文字颜色
+sed -i $sed_flag "s/color_position/$cover_font_color/g" $script_path/cover-maker/template/1/conf.ini #替换文字颜色
 
 cp -f $format_path/$cur_date/$folder_name/cover.png "$script_path/cover-maker/template/1/cover.png"
 
@@ -66,7 +66,7 @@ python3 $script_path/cover-maker/cover_maker.py -o $format_path/$cur_date/$folde
 
 echo "$cur_date/$folder_name 生成带文字封面成功"
 
-sed -i "" "s/$cover_font_color/color_position/g" $script_path/cover-maker/template/1/conf.ini #还原文字颜色
+sed -i $sed_flag "s/$cover_font_color/color_position/g" $script_path/cover-maker/template/1/conf.ini #还原文字颜色
 
 rm -rf $format_path/$cur_date/$folder_name/video_list.txt
 rm -rf $format_path/$cur_date/$folder_name/output.mp4
